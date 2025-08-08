@@ -1,0 +1,19 @@
+{
+  "name": "practice",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "newman run collection/Status_Code.postman_collection.json -r html"
+  },
+  "author": "Inna Bedenok",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.54.2",
+    "@types/node": "^24.2.1"
+  },
+  "dependencies": {
+    "newman": "^6.2.1",
+    "newman-reporter-html": "^1.0.5"
+  }
+}

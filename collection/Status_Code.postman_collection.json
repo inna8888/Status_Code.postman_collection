@@ -1,0 +1,204 @@
+{
+	"info": {
+		"_postman_id": "f54c6a1f-d69e-4de1-98be-a8e77d5c180f",
+		"name": "Status Code",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24082185"
+	},
+	"item": [
+		{
+			"name": "300",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status should be 300\", function() {\r",
+							"    pm.response.to.have.status(300);\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://httpbin.org/status/300",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"status",
+						"300"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "500",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status should be 500\", function() {\r",
+							"    pm.response.to.have.status(500);\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://httpbin.org/status/500",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"status",
+						"500"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status should be 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Status should has OK\", function() {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Status should be 200 or 201\", function() {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"args\": {},\r\n  \"data\": \"\",\r\n  \"files\": {},\r\n  \"form\": {},\r\n  \"headers\": {\r\n    \"Accept\": \"application/json\",\r\n    \"Accept-Encoding\": \"gzip, deflate, br, zstd\",\r\n    \"Accept-Language\": \"uk-UA,uk;q=0.9,en-US;q=0.8,en;q=0.7\",\r\n    \"Content-Length\": \"0\",\r\n    \"Host\": \"httpbin.org\",\r\n    \"Origin\": \"https://httpbin.org\",\r\n    \"Priority\": \"u=1, i\",\r\n    \"Referer\": \"https://httpbin.org/\",\r\n    \"Sec-Ch-Ua\": \"\\\"Not)A;Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"138\\\", \\\"Google Chrome\\\";v=\\\"138\\\"\",\r\n    \"Sec-Ch-Ua-Mobile\": \"?0\",\r\n    \"Sec-Ch-Ua-Platform\": \"\\\"Windows\\\"\",\r\n    \"Sec-Fetch-Dest\": \"empty\",\r\n    \"Sec-Fetch-Mode\": \"cors\",\r\n    \"Sec-Fetch-Site\": \"same-origin\",\r\n    \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36\",\r\n    \"X-Amzn-Trace-Id\": \"Root=1-688e5a89-5133b6bf0010836f41007add\"\r\n  },\r\n  \"json\": null,\r\n  \"origin\": \"91.203.143.245\",\r\n  \"url\": \"https://httpbin.org/post\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://httpbin.org/status/200",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"status",
+						"200"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status should be 400\", function() {\r",
+							"    pm.response.to.have.status(400);\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "https://httpbin.org/status/400",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"status",
+						"400"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "100",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status should be 100\", function(){\r",
+							"    pm.response.to.have.status(100);\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://httpbin.org/status/100",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"status",
+						"100"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
