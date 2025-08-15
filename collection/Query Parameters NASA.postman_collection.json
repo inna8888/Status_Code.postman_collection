@@ -1,0 +1,478 @@
+{
+	"info": {
+		"_postman_id": "5196e905-34c3-49b9-b794-3804092d6bdc",
+		"name": "Query Parameters NASA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24082185"
+	},
+	"item": [
+		{
+			"name": "Get Date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Header exist\", function(){\r",
+							"    pm.response.to.have.header('Access-Control-Expose-Headers');\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Header exist\", function(){\r",
+							"    const connectionHeader = pm.response.headers.get(\"Connection\");\r",
+							"    pm.expect(connectionHeader).to.eql(\"keep-alive\");\r",
+							"    // const headers = pm.response.headers.toObject(); або можна було так\r",
+							"    // console.log(headers);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response body has expected value\", function() {\r",
+							"    const json = pm.response.json(); \r",
+							"    // розбирає тіло відповіді як JSON та повертає JavaScript-об'єкт\r",
+							"    pm.expect(json.media_type).to.eql(\"image\");\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/planetary/apod?date=2025-08-14&api_key=NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"planetary",
+						"apod"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2025-08-14"
+						},
+						{
+							"key": "api_key",
+							"value": "NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Start_Date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Header exist\", function(){\r",
+							"    pm.response.to.have.header('Access-Control-Expose-Headers');\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Header exist\", function(){\r",
+							"    const connectionHeader = pm.response.headers.get(\"Connection\");\r",
+							"    pm.expect(connectionHeader).to.eql(\"keep-alive\");\r",
+							"    // const headers = pm.response.headers.toObject(); або можна було так\r",
+							"    // console.log(headers);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response body has expected value\", function() {\r",
+							"    const json = pm.response.json(); \r",
+							"    // розбирає тіло відповіді як JSON та повертає JavaScript-об'єкт\r",
+							"    pm.expect(json[0].media_type).to.eql(\"image\");\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/planetary/apod?start_date=2025-08-05&api_key=NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"planetary",
+						"apod"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2025-08-05"
+						},
+						{
+							"key": "api_key",
+							"value": "NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Start_Date End_Date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Header exist\", function(){\r",
+							"    pm.response.to.have.header('Access-Control-Expose-Headers');\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Header exist\", function(){\r",
+							"    const connectionHeader = pm.response.headers.get(\"Connection\");\r",
+							"    pm.expect(connectionHeader).to.eql(\"keep-alive\");\r",
+							"    // const headers = pm.response.headers.toObject(); або можна було так\r",
+							"    // console.log(headers);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response body has expected value\", function() {\r",
+							"    const json = pm.response.json(); \r",
+							"    // розбирає тіло відповіді як JSON та повертає JavaScript-об'єкт\r",
+							"    pm.expect(json[0].media_type).to.eql(\"image\");\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/planetary/apod?start_date=2025-08-05&end_date=2025-08-12&api_key=NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"planetary",
+						"apod"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2025-08-05"
+						},
+						{
+							"key": "end_date",
+							"value": "2025-08-12"
+						},
+						{
+							"key": "api_key",
+							"value": "NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Count",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Header exist\", function(){\r",
+							"    pm.response.to.have.header('Access-Control-Expose-Headers');\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Header exist\", function(){\r",
+							"    const connectionHeader = pm.response.headers.get(\"Connection\");\r",
+							"    pm.expect(connectionHeader).to.eql(\"keep-alive\");\r",
+							"    // const headers = pm.response.headers.toObject(); або можна було так\r",
+							"    // console.log(headers);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response body has expected value\", function() {\r",
+							"    const json = pm.response.json(); \r",
+							"    // розбирає тіло відповіді як JSON та повертає JavaScript-об'єкт\r",
+							"    pm.expect(json[0].media_type).to.eql(\"image\");\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/planetary/apod?api_key=NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY&count=2",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"planetary",
+						"apod"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY"
+						},
+						{
+							"key": "count",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Thumbs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Header exist\", function(){\r",
+							"    pm.response.to.have.header('Access-Control-Expose-Headers');\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Header exist\", function(){\r",
+							"    const connectionHeader = pm.response.headers.get(\"Connection\");\r",
+							"    pm.expect(connectionHeader).to.eql(\"keep-alive\");\r",
+							"    // const headers = pm.response.headers.toObject(); або можна було так\r",
+							"    // console.log(headers);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response body has expected value\", function() {\r",
+							"    const json = pm.response.json(); \r",
+							"    // розбирає тіло відповіді як JSON та повертає JavaScript-об'єкт\r",
+							"    pm.expect(json.media_type).to.eql(\"image\");\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/planetary/apod?thumbs=true&api_key=NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"planetary",
+						"apod"
+					],
+					"query": [
+						{
+							"key": "thumbs",
+							"value": "true"
+						},
+						{
+							"key": "api_key",
+							"value": "NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Api Key",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Header exist\", function(){\r",
+							"    pm.response.to.have.header('Access-Control-Expose-Headers');\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Header exist\", function(){\r",
+							"    const connectionHeader = pm.response.headers.get(\"Connection\");\r",
+							"    pm.expect(connectionHeader).to.eql(\"keep-alive\");\r",
+							"    // const headers = pm.response.headers.toObject(); або можна було так\r",
+							"    // console.log(headers);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Request url has api key\", function() {\r",
+							"    const apiKey = pm.request.url.query.get(\"api_key\"); // Отримуємо значення\r",
+							"    pm.expect(apiKey).to.not.be.undefined; // Перевіряємо, що існує\r",
+							"    pm.expect(apiKey).to.eql(\"NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY\");// Перевіряємо значення\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nasa.gov/planetary/apod?thumbs=true&api_key=NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"planetary",
+						"apod"
+					],
+					"query": [
+						{
+							"key": "thumbs",
+							"value": "true"
+						},
+						{
+							"key": "api_key",
+							"value": "NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "NPAT5IaxPYRBxgOcIbUbgiJkg8HeD3gdyRz5aGnY",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
