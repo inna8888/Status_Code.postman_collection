@@ -13,7 +13,7 @@
     "@types/node": "^24.2.1"
   },
   "dependencies": {
-    "newman": "^6.2.1",
+    "newman": "^4.6.1",
     "newman-reporter-html": "^1.0.5"
   }
 }
