@@ -5,20 +5,11 @@ import {
    APIRequestContext,
    expect,
 } from "@playwright/test";
-/*
-Creates a new auth token to use for access to the PUT and DELETE /booking
-https://restful-booker.herokuapp.com/auth
-Example 1:
-curl -X POST \
-  https://restful-booker.herokuapp.com/auth \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "username" : "admin",
-    "password" : "password123"
-}'*/
+import Joi from 'joi';
+
 //fixture
-//default fixture - page, context(створює ізольоване середовище для зберігання кукі, локал сторідж), browser, request
-let token;
+//default fixtures - page, context(створює ізольоване середовище для зберігання кукі, локал сторідж), browser, request
+let token: string;
 
 test.beforeAll(async ({request}) => {
    test.setTimeout(60_000);
@@ -53,23 +44,8 @@ test("RB-001 get auth - create token", async()=> {
 
    expect(token).toBeDefined();
 })
-/*Creates a new booking in the API
-https://restful-booker.herokuapp.com/booking
-curl -X POST \
-  https://restful-booker.herokuapp.com/booking \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "firstname" : "Jim",
-    "lastname" : "Brown",
-    "totalprice" : 111,
-    "depositpaid" : true,
-    "bookingdates" : {
-        "checkin" : "2018-01-01",
-        "checkout" : "2019-01-01"
-    },
-    "additionalneeds" : "Breakfast"
-}'*/
-test("RB-002 add booking", async ({request}) => {
+
+test("RB-002 update existing booking", async ({request}) => {
    const result = await request.post('/booking', {
       data: {
          firstname: "Jim",
@@ -109,24 +85,7 @@ test("RB-002 add booking", async ({request}) => {
    expect(updateBooking.status()).toBe(200);
 
 } )
-/* Updates a current booking
-https://restful-booker.herokuapp.com/booking/:id 
-curl -X PUT \
-  https://restful-booker.herokuapp.com/booking/1 \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Cookie: token=abc123' \
-  -d '{
-    "firstname" : "James",
-    "lastname" : "Brown",
-    "totalprice" : 111,
-    "depositpaid" : true,
-    "bookingdates" : {
-        "checkin" : "2018-01-01",
-        "checkout" : "2019-01-01"
-    },
-    "additionalneeds" : "Breakfast"
-}'*/
+
 test("RB-003 update current booking", async ({request}) => {
    const updateBooking = await request.put('/booking/1', {
       data: {
@@ -151,8 +110,8 @@ test("RB-004 create booking, headers should exist", async ({request}) => {
          totalprice: 111,
          depositpaid: true,
          bookingdates: {
-            checkin: "2018-01-01",
-            checkout: "2019-01-01"
+            checkin: "2026-01-01",
+            checkout: "2026-01-01"
       },
       additionalneeds: "Breakfast",
       },
@@ -161,9 +120,63 @@ test("RB-004 create booking, headers should exist", async ({request}) => {
          Cookie: `token=${token}`,
       },
    })
-
 const headers = result.headers();
+// Print headers for debugging
+console.log('Response headers:', headers);
+
+// Check for existence of 'content-type' header (lowercase, as returned by Playwright)
+expect(headers['content-type']).toBeDefined();
+
+// Optionally check for other headers if needed
+// expect(headers['accept']).toBeDefined();
+
+// For array format (debugging)
 const headersArr = result.headersArray();
-console.log("");
+console.log('Headers array:', headersArr);
 
 })
+
+test("RB-005 create booking, json schema should be valid", async ({request}) => {
+   const result = await request.post('/booking', {
+      data: {
+         firstname: "Jimmm",
+         lastname: "Brown",
+         totalprice: 111,
+         depositpaid: true,
+         bookingdates: {
+            checkin: "2026-01-01",
+            checkout: "2026-01-01"
+      },
+      additionalneeds: "Breakfast",
+      },
+      // failOnStatusCode: true,
+      headers: {
+         Cookie: `token=${token}`,
+      },
+   })
+   const json = await result.json();
+   const bookingSchema = Joi.object({
+      additionalneeds: Joi.string().required(),//властивість обовязкoва
+      totalprice: Joi.number().required(),
+      firstname: Joi.string().required(),
+      lastname: Joi.string().required(),
+      depositpaid: Joi.boolean().required(),
+      bookingdates: Joi.object({
+         checkin: Joi.date().required(),
+         checkout: Joi.date().required(),
+      }),
+   });
+
+   const schema = Joi.object({
+      bookingid: Joi.number().required(),
+      booking: bookingSchema.required(),
+   });
+
+   const validationResult = await schema.validateAsync(json);//асинхронна валідація
+})
+
+test("RB-006 update partially existing booking", async({request})) => {
+   const result = await request.patch('/booking/1', {
+      
+   }  )
+}
