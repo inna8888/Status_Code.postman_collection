@@ -1,0 +1,35 @@
+name: Run Postman Tests with Newman
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run Newman tests
+      run: npm run test
+
+    - name: Upload Newman HTML Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: newman-html-report
+        path: newman/report.html
+        retention-days: 30
